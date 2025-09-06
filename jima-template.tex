@@ -1,0 +1,106 @@
+% JIMA（日本経営工学会）論文テンプレート
+% Template for Japan Industrial Management Association Papers
+%
+% 作成者: 鈴木柾孝
+% 作成日: 2025年9月6日
+% バージョン: 1.0
+% 
+% 使用方法:
+% 1. タイトルを設定: \title{論文タイトル}
+% 2. 著者を設定: \authorone{名前}{所属}, \authortwo{名前}{所属}, ...
+% 3. 本文を記述
+%
+% 注意: このテンプレートの使用により生じるいかなる問題についても
+%       作成者は責任を負いません。最新の投稿規定をJIMA公式サイトで
+%       必ずご確認ください。
+
+\documentclass[10.5pt,twocolumn]{ltjsarticle}
+\usepackage{jima-paper}  % 上記のスタイルファイルを読み込み
+
+% ========================================
+% 論文情報の設定
+% ========================================
+\title{論文タイトル}
+
+% 著者情報（最大6名まで対応）
+% 使用例: \authorone{著者名}{所属}
+\authorone{著者}{早稲田大学}
+\authortwo{共著者1}{早稲田大学}
+\authorthree{共著者2}{後藤研究所}
+\authorfour{共著者3}{早稲田大学}
+% \authorfive{共著者4}{早稲田大学}
+% \authorsix{共著者5}{○○大学}
+
+% ========================================
+% 本文開始
+% ========================================
+\begin{document}
+
+\maketitle
+
+\section{概要}
+この部分に概要を記述します。テンプレートの構造を保持しながら、著者の便宜をはかるとともに論文の書式を統一するためのものです。
+
+\section{序論}
+研究の背景、目的、および論文の構成について記述します。
+
+\section{関連研究}
+既存研究のレビューを行い、本研究の位置づけを明確にします。
+
+\section{提案手法}
+本研究で提案する手法について詳細に説明します。
+
+\section{実験}
+\subsection{実験設定}
+実験の設定について記述します。
+
+\subsection{実験結果}
+実験で得られた結果について述べます。
+
+\section{図表の挿入例}
+\subsection{図の挿入}
+図の挿入に関する説明をここに記述します。図の解像度は300〜600 dpiとしてください。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\columnwidth]{example-image}
+\caption{図のキャプション例}
+\label{fig:example}
+\end{figure}
+
+本文中では図\ref{fig:example}のように参照できます。
+
+\subsection{数式の挿入}
+数式も挿入できます：
+
+\begin{equation}
+y = ax^2 + bx + c
+\label{eq:quadratic}
+\end{equation}
+
+式(\ref{eq:quadratic})は二次関数を表しています。
+
+\section{考察}
+結果に対する考察を記述します。研究の意義、限界、今後の展開についても言及します。
+
+\section{結論}
+本研究の結論をまとめます。主要な貢献と今後の課題を明記します。
+
+% ========================================
+% 参考文献
+% ========================================
+\begin{thebibliography}{9}
+\bibitem{ref1}
+○○ ○○，生産に関する研究，日本経営工学会論文誌, Vol. 52, pp. 29-34 (2001).
+
+\bibitem{ref2}
+△△ △△，□□ □□, サプライチェインマネジメント，国際文献社 (2002).
+
+\bibitem{ref3}
+■■ ■■, 事業継続と経営工学，日本経営工学会 2014 年秋季大会予稿集，pp.13-14.
+
+\bibitem{ref4}
+Smith, J.A., Johnson, B.C., Research on Production Management, International Journal of Operations Research, Vol. 28, No. 3, pp. 45-62 (2020).
+\end{thebibliography}
+
+\end{document}

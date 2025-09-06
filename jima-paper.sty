@@ -1,0 +1,220 @@
+% JIMA (日本経営工学会) 論文テンプレート用スタイルファイル
+% Template for Japan Industrial Management Association Papers
+%
+% 作成者 (Author): 鈴木柾孝 (Masataka Suzuki)
+% 作成日 (Created): 2025年9月6日
+% バージョン (Version): 1.0
+%
+% 免責事項 (Disclaimer):
+% このテンプレートは個人的な利用を目的として作成されたものです。
+% 使用に際して生じるいかなる問題についても作成者は責任を負いません。
+% 公式な投稿規定については必ずJIMAの最新ガイドラインをご確認ください。
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{jima-paper}[2025/09/06 v1.0 JIMA Paper Template]
+
+% 必要なパッケージの読み込み
+\RequirePackage[a4paper,top=20mm,bottom=20mm,left=20mm,right=20mm]{geometry}
+\RequirePackage{graphicx}
+\RequirePackage{float}
+\RequirePackage{amsmath}
+\RequirePackage{cite}
+\RequirePackage{titlesec}
+\RequirePackage{indentfirst} % 段落の最初を字下げ
+
+% ページ番号を非表示
+\pagestyle{empty}
+
+% フォント設定
+\renewcommand{\familydefault}{\sfdefault}
+
+% 著者情報の定義（所属も含む）
+\makeatletter
+\newcommand{\authorone}[2]{\def\@authorone{#1}\def\@affiliationone{#2}}
+\newcommand{\authortwo}[2]{\def\@authortwo{#1}\def\@affiliationtwo{#2}}
+\newcommand{\authorthree}[2]{\def\@authorthree{#1}\def\@affiliationthree{#2}}
+\newcommand{\authorfour}[2]{\def\@authorfour{#1}\def\@affiliationfour{#2}}
+\newcommand{\authorfive}[2]{\def\@authorfive{#1}\def\@affiliationfive{#2}}
+\newcommand{\authorsix}[2]{\def\@authorsix{#1}\def\@affiliationsix{#2}}
+
+% デフォルト値を設定（空の場合）
+\def\@authorone{}
+\def\@authortwo{}
+\def\@authorthree{}
+\def\@authorfour{}
+\def\@authorfive{}
+\def\@authorsix{}
+\def\@affiliationone{}
+\def\@affiliationtwo{}
+\def\@affiliationthree{}
+\def\@affiliationfour{}
+\def\@affiliationfive{}
+\def\@affiliationsix{}
+
+% 早稲田大学所属の著者リストを構築
+\newcommand{\buildwasedaauthors}{%
+  \def\wasedaauthors{}%
+  \ifx\@affiliationone\@empty\else%
+    \def\tempaffil{早稲田大学}%
+    \ifx\@affiliationone\tempaffil%
+      \ifx\wasedaauthors\@empty%
+        \def\wasedaauthors{\@authorone}%
+      \else%
+        \edef\wasedaauthors{\wasedaauthors，\@authorone}%
+      \fi%
+    \fi%
+  \fi%
+  \ifx\@affiliationtwo\@empty\else%
+    \def\tempaffil{早稲田大学}%
+    \ifx\@affiliationtwo\tempaffil%
+      \ifx\wasedaauthors\@empty%
+        \def\wasedaauthors{\@authortwo}%
+      \else%
+        \edef\wasedaauthors{\wasedaauthors，\@authortwo}%
+      \fi%
+    \fi%
+  \fi%
+  \ifx\@affiliationthree\@empty\else%
+    \def\tempaffil{早稲田大学}%
+    \ifx\@affiliationthree\tempaffil%
+      \ifx\wasedaauthors\@empty%
+        \def\wasedaauthors{\@authorthree}%
+      \else%
+        \edef\wasedaauthors{\wasedaauthors，\@authorthree}%
+      \fi%
+    \fi%
+  \fi%
+  \ifx\@affiliationfour\@empty\else%
+    \def\tempaffil{早稲田大学}%
+    \ifx\@affiliationfour\tempaffil%
+      \ifx\wasedaauthors\@empty%
+        \def\wasedaauthors{\@authorfour}%
+      \else%
+        \edef\wasedaauthors{\wasedaauthors，\@authorfour}%
+      \fi%
+    \fi%
+  \fi%
+  \ifx\@affiliationfive\@empty\else%
+    \def\tempaffil{早稲田大学}%
+    \ifx\@affiliationfive\tempaffil%
+      \ifx\wasedaauthors\@empty%
+        \def\wasedaauthors{\@authorfive}%
+      \else%
+        \edef\wasedaauthors{\wasedaauthors，\@authorfive}%
+      \fi%
+    \fi%
+  \fi%
+  \ifx\@affiliationsix\@empty\else%
+    \def\tempaffil{早稲田大学}%
+    \ifx\@affiliationsix\tempaffil%
+      \ifx\wasedaauthors\@empty%      
+        \def\wasedaauthors{\@authorsix}%
+      \else%
+        \edef\wasedaauthors{\wasedaauthors，\@authorsix}%
+      \fi%
+    \fi%
+  \fi%
+  \wasedaauthors%
+}
+
+% その他の所属の著者リストを構築
+\newcommand{\buildotherauthors}{%
+  \def\otherauthors{}%
+  \def\otheraffiliations{}%
+  \ifx\@affiliationone\@empty\else%
+    \def\tempaffil{早稲田大学}%
+    \ifx\@affiliationone\tempaffil\else%
+      \ifx\otherauthors\@empty%
+        \def\otherauthors{\@authorone}%
+        \def\otheraffiliations{\@affiliationone}%
+      \else%
+        \edef\otherauthors{\otherauthors，\@authorone}%
+        \edef\otheraffiliations{\otheraffiliations，\@affiliationone}%
+      \fi%
+    \fi%
+  \fi%
+  \ifx\@affiliationtwo\@empty\else%
+    \def\tempaffil{早稲田大学}%
+    \ifx\@affiliationtwo\tempaffil\else%
+      \ifx\otherauthors\@empty%
+        \def\otherauthors{\@authortwo}%
+        \def\otheraffiliations{\@affiliationtwo}%
+      \else%
+        \edef\otherauthors{\otherauthors，\@authortwo}%
+        \edef\otheraffiliations{\otheraffiliations，\@affiliationtwo}%
+      \fi%
+    \fi%
+  \fi%
+  \ifx\@affiliationthree\@empty\else%
+    \def\tempaffil{早稲田大学}%
+    \ifx\@affiliationthree\tempaffil\else%
+      \ifx\otherauthors\@empty%
+        \def\otherauthors{\@authorthree}%
+        \def\otheraffiliations{\@affiliationthree}%
+      \else%
+        \edef\otherauthors{\otherauthors，\@authorthree}%
+        \edef\otheraffiliations{\otheraffiliations，\@affiliationthree}%
+      \fi%
+    \fi%
+  \fi%
+  \ifx\@affiliationfour\@empty\else%
+    \def\tempaffil{早稲田大学}%
+    \ifx\@affiliationfour\tempaffil\else%
+      \ifx\otherauthors\@empty%
+        \def\otherauthors{\@authorfour}%
+        \def\otheraffiliations{\@affiliationfour}%
+      \else%
+        \edef\otherauthors{\otherauthors，\@authorfour}%
+        \edef\otheraffiliations{\otheraffiliations，\@affiliationfour}%
+      \fi%
+    \fi%
+  \fi%
+  \ifx\@affiliationfive\@empty\else%
+    \def\tempaffil{早稲田大学}%
+    \ifx\@affiliationfive\tempaffil\else%
+      \ifx\otherauthors\@empty%
+        \def\otherauthors{\@authorfive}%
+        \def\otheraffiliations{\@affiliationfive}%
+      \else%
+        \edef\otherauthors{\otherauthors，\@authorfive}%
+        \edef\otheraffiliations{\otheraffiliations，\@affiliationfive}%
+      \fi%
+    \fi%
+  \fi%
+  \ifx\@affiliationsix\@empty\else%
+    \def\tempaffil{早稲田大学}%
+    \ifx\@affiliationsix\tempaffil\else%
+      \ifx\otherauthors\@empty%
+        \def\otherauthors{\@authorsix}%
+        \def\otheraffiliations{\@affiliationsix}%
+      \else%
+        \edef\otherauthors{\otherauthors，\@authorsix}%
+        \edef\otheraffiliations{\otheraffiliations，\@affiliationsix}%
+      \fi%
+    \fi%
+  \fi%
+  \ifx\otherauthors\@empty\else%
+    \otheraffiliations\hspace{2mm}\otherauthors%
+  \fi%
+}
+
+% タイトル部分のカスタマイズ（所属別に行分け）
+\def\@maketitle{%
+  \newpage
+  \null
+  \begin{center}%
+    {\fontsize{12pt}{14pt}\selectfont\bfseries \@title \par}%
+  \end{center}%
+  \begin{flushright}%
+    {\fontsize{10.5pt}{12pt}\selectfont 
+     早稲田大学\hspace{2mm}＊\buildwasedaauthors\hspace*{2mm}\\
+     \buildotherauthors\hspace*{2mm}}%
+  \end{flushright}%
+  \vskip 1.5em}
+\makeatother
+
+% セクションのスペーシング設定
+\AtBeginDocument{
+  \titlespacing*{\section}{0pt}{4pt}{2pt}
+  \titlespacing*{\subsection}{0pt}{3pt}{1pt}
+}
